@@ -1,10 +1,15 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+import Users from './pages/Users';
+
+const queryClient = new QueryClient();
 
 const App = (): JSX.Element => {
   return (
-    <div className="App">
-      <h1>Hello React!</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Users />
+    </QueryClientProvider>
   );
 };
 

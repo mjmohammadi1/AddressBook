@@ -25,6 +25,22 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          String: false,
+          Boolean: false,
+          Number: false,
+          Symbol: false,
+          '{}': false,
+          Object: false,
+          object: false,
+          Function: false,
+        },
+        extendDefaults: true,
+      },
+    ],
   },
   settings: {
     react: {
