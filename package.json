@@ -40,7 +40,6 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "eslint --ext .tsx --ext .ts ./src/",
-      "prettier --write ./src",
       "git add"
     ]
   },

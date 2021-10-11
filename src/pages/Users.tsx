@@ -50,8 +50,7 @@ const Users: FunctionComponent = (): JSX.Element => {
                 onClick={() => {
                   updateUserState(index);
                   redirectToUserDetails();
-                }}
-              >
+                }}>
                 See Details
               </ListItemButton>
             </div>
@@ -77,11 +76,10 @@ const Users: FunctionComponent = (): JSX.Element => {
       <Button
         variant="contained"
         onClick={() => (page - 1 === 0 ? null : setPage(page - 1))}
-        disabled={isDisabled()}
-      >
+        disabled={isDisabled()}>
         Previous Page
       </Button>
-      <Button variant="contained" onClick={() => setPage(page + 1)}>
+      <Button style={{ marginLeft: 10 }} variant="contained" onClick={() => setPage(page + 1)}>
         Next Page
       </Button>
       {handlePageRender()}
