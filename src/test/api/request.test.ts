@@ -17,6 +17,5 @@ describe('request unit test suite', () => {
     await request(HTTP_METHODS.GET, '?results=5');
     expect(api).toBeCalledWith(REACT_APP_HOST_URL);
     expect(mockedAxios.request).toBeCalledWith((HTTP_METHODS.GET, '?results=5'));
-    // expect(mockedAxios.request).toReturn(Promise);
   });
 });

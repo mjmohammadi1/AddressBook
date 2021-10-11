@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
 import routes from './utils/routes';
 
-//put logging here instead of consile log
 const Application = (): JSX.Element => {
-  useEffect(() => {
-    console.log('logging Application ...');
-  });
   return (
     <div>
       <BrowserRouter>
