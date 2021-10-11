@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-
-import Users from './pages/Users';
+import Application from './ApplicationRouter';
+import UserContext from './context/UserContext';
 
 const queryClient = new QueryClient();
-
+//put logging here instead of consile log
 const App = (): JSX.Element => {
+  useEffect(() => {
+    console.log('logging application ...');
+  });
   return (
-    <QueryClientProvider client={queryClient}>
-      <Users />
-    </QueryClientProvider>
+    <div>
+      <UserContext.Provider>
+        <QueryClientProvider client={queryClient}>
+          <Application />
+        </QueryClientProvider>
+      </UserContext.Provider>
+    </div>
   );
 };
 
