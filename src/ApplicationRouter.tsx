@@ -17,7 +17,7 @@ const Application = (): JSX.Element => {
                 key={index}
                 path={route.path}
                 exact={route.exact}
-                render={(props: RouteComponentProps<any>) => (
+                render={(props: RouteComponentProps<object>) => (
                   <route.component name={route.name} {...props} {...route.props} />
                 )}
               />

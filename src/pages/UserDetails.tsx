@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { RouteComponentProps } from 'react-router';
 import UserIndexContext from '../context/UserContext';
 import Page from '../types/page';
 
-const UserDetails: FunctionComponent<Page & RouteComponentProps<any>> = (props) => {
+const UserDetails: FunctionComponent<Page> = () => {
   const {
     state: { name, phone },
   } = useContext(UserIndexContext.Context);
