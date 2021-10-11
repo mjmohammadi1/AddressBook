@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# The web frontend client of the “Address Book” application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React Application that Is calling https://randomuser.me/ to get a list of users and display them on the screen, It also allows by clicking on the **See Details** button to have access to the **user's name, title, and phone number**.
 
-## Available Scripts
+# To run the application
 
-In the project directory, you can run:
+I recommend using Docker, which from my point of view, is the most convenient way of running it:
 
-### `yarn start`
+- Presence of a **.env file** in the main directory of the app is required to provide the environment variables that are needed in the app.
+- Install Docker, that compatible with your operating system using https://docs.docker.com/get-docker/
+- Run the following commands from within the project's main directory to spin up a container and use the app:
+  - docker build -t react-docker .
+  - docker run -p 3000:80 react-docker
+- now you should be able to use the app on http://localhost:3000/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Technologies Used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### - React
 
-### `yarn test`
+    [React Hooks, Custom Hooks, Context Api, React-Router, React-Query, Function Components, Material-UI]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### - TypeScript
 
-### `yarn build`
+    [put effort to avoid using type 'any' as much as I could, to prevent developer errors]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### - Code Quality tools
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    [Eslint, Prettier, Lint-staged, conventional commits to enforcing development and committing standrads]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### - Docker
 
-### `yarn eject`
+    [ docker-compose with Nginx]
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### - Testing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    [I'm familiar and functional with testing, and would have added more if I had more time]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Overall Approach
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### couple of steps I took in mind before coding
 
-## Learn More
+- Understanding the problem at hand.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Think of possible ways of solving it.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Choose the proper tools that I was aware of.
+
+- Kept the quality of code in mind all the time.
+
+- Since I like **functional programming, generics, abstractions, and keeping the code clean, I tried to pay attention to these, by creating reusable functions that 'do one thing', and tried to minimize the 'developer written' values that affect the app functionality, tried to 'type' objects, parameters when needed** and choose the tools that are appropriate for the scope of this application.
+  For example, I **did not use Redux** because that was too much for this app, but I used React Context API, which has the same functionality.
+
+- If I had more time, I would have:
+
+  - Added more testing and coverage to ensure the functionality of the code( even though they are manually tested during development, but no excuse for not doing it).
+
+  - Added more styling.
+
+  - Deployed it to a cloud infrastructure
