@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
-import routes from './components/routes';
+import routes from './utils/routes';
 
-const queryClient = new QueryClient();
 //put logging here instead of consile log
 const Application = (): JSX.Element => {
   useEffect(() => {

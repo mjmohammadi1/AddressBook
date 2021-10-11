@@ -4,11 +4,12 @@ import Application from './ApplicationRouter';
 import UserContext from './context/UserContext';
 
 const queryClient = new QueryClient();
-//put logging here instead of consile log
+
+//ADD PROPER LOGGING
 const App = (): JSX.Element => {
-  useEffect(() => {
-    console.log('logging application ...');
-  });
+  // useEffect(() => {
+  //   console.log('logging application ...');
+  // });
   return (
     <div>
       <UserContext.Provider>

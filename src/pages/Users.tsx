@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
 import { useQuery } from 'react-query';
-import request from '../api/request';
-import { HTTP_METHODS } from '../types/api';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { ListItemButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { updateUser } from '../state/reducer';
 import { User } from '../state/state';
-const { REACT_APP_USERS_RETURNED_PER_PAGE } = process.env;
+import { REACT_QUERY_STALE_TIME } from '../utils/queries';
+
+import { useUsers } from '../hooks/useUsers';
 
 const Users: FunctionComponent = (): JSX.Element => {
   //FIX any type
@@ -16,42 +16,26 @@ const Users: FunctionComponent = (): JSX.Element => {
   const [page, setPage] = useState<number>(1);
   const { dispatch } = useContext(UserContext.Context);
 
-  const getUsers = async (page: number): Promise<any> => {
-    console.log('REACT_APP_USERS_RETURNED_PER_PAGE', REACT_APP_USERS_RETURNED_PER_PAGE);
-    //CONSIDER ADDING trye and catch here
-    const { data } = await request(HTTP_METHODS.GET, '?results=10'); //number of users per page maybe hardcoded, maybe i add something like a query instead of '?=results'
-    console.log('result :', data);
-    return data;
-  };
-
   const { data, status, error } = useQuery<any, Error>(['users', page], () => getUsers(page), {
-    staleTime: 600000,
+    staleTime: REACT_QUERY_STALE_TIME,
     keepPreviousData: true,
   });
-
   const history = useHistory();
 
-  const goToUserDetails = (index: number) => {
-    console.log('go to user details called');
-    const {
-      name: { title, first, last },
-      phone,
-    }: User = data.results[index];
-    const user: User = {
-      name: { title, first, last },
-      phone,
-    };
-    //update user state , then mredirect and render
-    console.log('data.results[0] : ', { title, first, last }, phone);
-
+  const updateUserState = (index: number) => {
+    const user: User = data[index];
     dispatch(updateUser(user));
+  };
+  const redirectToUserDetails = () => {
     history.push('/UserDetails/');
   };
+
+  const { getUsers } = useUsers();
 
   const displayUsers = () => {
     return (
       <List>
-        {data.results.map((user: any, index: number) => (
+        {data.map((user: any, index: number) => (
           <ListItem key={user.email}>
             <div style={{ alignContent: 'center' }}>
               <ListItemText>
@@ -59,7 +43,8 @@ const Users: FunctionComponent = (): JSX.Element => {
               </ListItemText>
               <ListItemButton
                 onClick={() => {
-                  goToUserDetails(index);
+                  updateUserState(index);
+                  redirectToUserDetails();
                 }}
               >
                 See Details
