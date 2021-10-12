@@ -13,6 +13,10 @@ I recommend using Docker, which from my point of view, is the most convenient wa
   - docker run -p 3000:80 react-docker
 - now you should be able to use the app on http://localhost:3000/
 
+# To run the tests with coverage
+
+npm test -- --coverage --watchAll=false
+
 # Technologies Used
 
 ### - React
