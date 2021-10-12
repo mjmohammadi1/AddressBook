@@ -1,12 +1,10 @@
 import React, { FunctionComponent, useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
-import { useQuery } from 'react-query';
 import { List, ListItem, ListItemText, Button } from '@material-ui/core';
 import { ListItemButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { updateUser } from '../state/reducer';
 import { User } from '../state/state';
-import { REACT_QUERY_STALE_TIME } from '../utils/queries';
 
 import { useUsers } from '../hooks/useUsers';
 
@@ -15,10 +13,8 @@ const Users: FunctionComponent = (): JSX.Element => {
 
   const { dispatch } = useContext(UserContext.Context);
 
-  const { data, status, error } = useQuery<any, Error>(['users', page], () => getUsers(page), {
-    staleTime: REACT_QUERY_STALE_TIME,
-    keepPreviousData: true,
-  });
+  const { queryUsers } = useUsers();
+  const { data, status } = queryUsers(page);
 
   const history = useHistory();
 
@@ -30,8 +26,6 @@ const Users: FunctionComponent = (): JSX.Element => {
   const redirectToUserDetails = () => {
     history.push('/UserDetails/');
   };
-
-  const { getUsers } = useUsers();
 
   const isDisabled = () => {
     return page - 1 === 0 ? true : false;
@@ -69,7 +63,6 @@ const Users: FunctionComponent = (): JSX.Element => {
       </div>
     );
   };
-
   return (
     <div>
       <h1>Users Page</h1>

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 type Route = {
   path: string;
   name: string;
